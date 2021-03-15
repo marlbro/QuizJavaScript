@@ -1,0 +1,36 @@
+body {
+  height: 100vh;
+  display: flex;
+  background: linear-gradient(to bottom right, #429992, #ffffff);
+}
+
+h1 #title_name {
+  display: flex;
+  width: auto;
+}
+
+#Title-Name {
+  padding-left: 50%;
+  display: flex;
+  height: auto;
+  width: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10px;
+}
+
+.button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10px;
+  display: flex;
+  align-items: baseline;
+  height: 20px;
+  width: auto;
+}
+
+.border {
+  display: inline-flex;
+  background: brown;
+  height: 100px;
+  display: inline-block;
+  width: 90rem;
+}
