@@ -15,20 +15,22 @@ function init() {
 
 init();
 
-const question = new Map([
-  ['question', 'Which of the following is NOT a Falsey Value?'],
-  [1, '0'],
-  [2, 'Null'],
-  [3, '5'],
-  [4, ''],
-  ['correct', 3],
-  [true, 'Correct!'],
-  [false, 'Try again!'],
+//// questions using a Map
+// const question = new Map([
+//   ['question', 'Which of the following is NOT a Falsey Value?'],
+//   [1, '0'],
+//   [2, 'Null'],
+//   [3, '5'],
+//   [4, ''],
+//   ['correct', 3],
+//   [true, 'Correct!'],
+//   [false, 'Try again!'],
 
-  ['question2', 'What below is an in-line style code, in HTML?'],
-  ['question3', 'What is a great way to learn Code?'],
-]);
+//   ['question2', 'What below is an in-line style code, in HTML?'],
+//   ['question3', 'What is a great way to learn Code?'],
+// ]);
 
+/// Questions Array
 const questionArr = [
   {
     question: 'Who invented JavaScript?',
@@ -101,7 +103,7 @@ function nextQuestion() {}
 
 ////// events
 
-// start
+// Start **BUG**
 beginButton.addEventListener('click', function () {
   questionDisplay.textContent = question.get('question');
   beginButton.style.display = 'none';
