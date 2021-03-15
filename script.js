@@ -6,7 +6,6 @@ const questionDisplay = document.querySelector('.quiz');
 const inputAnswer = document.getElementById('inputAnswer');
 
 // init
-
 function init() {
   beginButton.style.display = '';
   stopBtn.style.display = 'none';
