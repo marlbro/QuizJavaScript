@@ -38,6 +38,7 @@ const questionArr = [
       a: 'Douglas Crockford',
       b: 'Sheryl Sandberg',
       c: 'Brendan Eich',
+      d: 'Bill Gates',
     },
     correctAnswer: 'c',
   },
@@ -70,27 +71,64 @@ console.log(questionArr);
 // console.log(questionArr[0].answers);  displays answers
 // console.log(questionArr[0].correctAnswer); //  displays answers
 
+//// Property Name and Value
 const what = Object.entries(questionArr);
-console.log(what);
+// console.log(what);
 
-for (const [
-  key,
-  {
-    question,
-    answers: { a, b, c, d },
-  },
-] of what) {
-  // console.log(typeof key);
-  console.log(
-    `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
+const answers = Object.entries(questionArr);
+
+for (const [key, { question, answers }] of what) {
+  console.log();
+}
+
+// console.log(
+//   `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
+// A: ${[a]}\n
+// B: ${[b]}\n
+// C: ${[c]}\n
+// D: ${[d]}`
+
+console.log(answers);
+
+// for (const [
+//   key,
+//   {
+//     question,
+//     answers: { a, b, c, d },
+//   },
+// ] of what) {
+//   // console.log(typeof key);
+
+//   console.log(
+//     `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
+//     A: ${[a]}\n
+//     B: ${[b]}\n
+//     C: ${[c]}\n
+//     D: ${[d]}`
+//   );
+// }
+
+function nextQuestion() {
+  for (const [
+    key,
+    {
+      question,
+      answers: { a, b, c, d },
+    },
+  ] of what) {
+    // console.log(typeof key);
+
+    console.log(
+      `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
     A: ${[a]}\n
     B: ${[b]}\n
     C: ${[c]}\n
     D: ${[d]}`
-  );
+    );
+  }
 }
 
-function nextQuestion() {}
+// nextQuestion();
 
 // Quiz
 // console.log(question.get('question'));
@@ -105,13 +143,12 @@ function nextQuestion() {}
 
 // Start **BUG**
 beginButton.addEventListener('click', function () {
-  questionDisplay.textContent = question.get('question');
-  beginButton.style.display = 'none';
-
+  // button behavior
+  questionDisplay.textContent = beginButton.style.display = 'none';
   stopBtn.style.display = '';
   inputAnswer.style.display = '';
 
-  for (const [key, value] of question) {
+  for (const [key, value] of what) {
     if (typeof key === 'number') {
       console.log(`Answer ${key}: ${value}`);
     }
