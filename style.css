@@ -14,9 +14,10 @@ body {
 
 #Title-Name {
   margin: auto;
+  padding-left: 29px;
   text-align: left;
   height: 10px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 10px;
 }
 
@@ -37,7 +38,7 @@ body {
   font-size: 20px;
   background: rgb(128, 128, 128);
   height: 40px;
-  width: 1080px;
+  width: auto;
 }
 
 .answers {
@@ -60,10 +61,11 @@ body {
 }
 
 h1 {
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   margin: auto;
   text-align: center;
-  padding-left: 750px;
+  padding-left: 25px;
 }
 /* #begin_btn {
 } */
