@@ -76,10 +76,9 @@ console.log(questionArr);
 const what = Object.entries(questionArr);
 // console.log(what);
 
-const entry = Object.values(questionArr);
-
 // destructure of object + nested objects
 const answers = Object.entries(questionArr);
+
 for (const [key, { question, answers }] of what) {
   // console.log(answers);
 }
@@ -144,60 +143,64 @@ for (const [key, { question, answers }] of what) {
 
 // Start **BUG**
 beginButton.addEventListener('click', function () {
-  // values
+  // key values
+  const entry = Object.entries(questionArr);
+  const arr = Object.values(answers);
 
-  for (const [key, { question, answers }] of what) {
-    console.log(question);
-
-    // button behavior
+  // question diplay
+  for (const [key, { question, answers: a, b, c, d }] of entry) {
+    // console.log(key);
     questionDisplay.textContent = `Question ${
       Number(key) + 1
     }. \n ${question} \n`;
 
-    beginButton.style.display = 'none';
+    console.log(answers);
 
-    stopBtn.style.display = '';
-
-    answerBtn.style.display = '';
-
-    inputAnswer.textContent = '';
+    inputAnswer.textContent = `Click 'Answer' and type in your answer.
+    `;
   }
-  // // questions array
-  // for (const [key, { question, answer }] of what) {
-  //   if (typeof key === 'number') {
-  //     console.log(`Answer ${key}: ${answer}`);
-  //   }
-  // }
 
-  answerBtn.addEventListener('click', function () {
-    // displays question in console
-    const answer = String(prompt('Choose your answer: ')).toLowerCase;
-    console.log(answer);
+  beginButton.style.display = 'none';
 
-    // compares answer
-    // console.log(question.get(question.get('correct') === answer));
+  stopBtn.style.display = '';
 
-    // for (const [key, { question, answers, correctAnswer }] of what) {
-    //   console.log(correctAnswer);
-
-    answer === value
-      ? (answerCheck.textContent = 'Correct!') +
-        (questionDisplay.textContent = '')
-      : (answerCheck.textContent = 'Try again!');
-    // nextQuestion();
-  });
-
-  // const answer = Number(prompt('Your answer?'));
-  // console.log(answer);
-
-  // console.log(question.get(question.get('correct') === answer));
+  answerBtn.style.display = '';
 });
+// // questions array
+// for (const [key, { question, answer }] of what) {
+//   if (typeof key === 'number') {
+//     console.log(`Answer ${key}: ${answer}`);
+
+answerBtn.addEventListener('click', function () {
+  // displays question in console
+  const answer = String(prompt('Type Answer: ')).toLowerCase;
+  console.log(answer);
+
+  // compares answer
+  // console.log(question.get(question.get('correct') === answer));
+
+  // for (const [key, { question, answers, correctAnswer }] of what) {
+  //   console.log(correctAnswer);
+
+  answer === correctAnswer
+    ? (answerCheck.textContent = 'Correct!') +
+      (questionDisplay.textContent = '')
+    : (answerCheck.textContent = 'Try again!');
+  // nextQuestion();
+});
+
+// const answer = Number(prompt('Your answer?'));
+// console.log(answer);
+
+// console.log(question.get(question.get('correct') === answer));
+// });
 
 // stop
 stopBtn.addEventListener('click', function () {
   questionDisplay.style.display = '';
   questionDisplay.textContent = '';
   answerCheck.textContent = '';
+  inputAnswer.textContent = '';
 
   init();
 });
