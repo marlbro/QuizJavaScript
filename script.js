@@ -3,13 +3,14 @@ const beginButton = document.getElementById('begin_btn');
 const stopBtn = document.getElementById('stop_btn');
 const answerCheck = document.querySelector('.answerCheck');
 const questionDisplay = document.querySelector('.quiz');
-const inputAnswer = document.getElementById('inputAnswer');
+const inputAnswer = document.querySelector('.answers');
+const answerBtn = document.getElementById('input');
 
 // init
 function init() {
   beginButton.style.display = '';
   stopBtn.style.display = 'none';
-  inputAnswer.style.display = 'none';
+  answerBtn.style.display = 'none';
   // console.log(stopBtn);
 }
 
@@ -55,7 +56,7 @@ const questionArr = [
   },
 
   {
-    question: 'In computer science, REST stands for what ancronym?',
+    question: 'In Computer Science, REST stands for what ancronym?',
     answers: {
       a: 'Read Every Single Thing',
       c: 'Readable Entry Syntax Technology',
@@ -74,6 +75,8 @@ console.log(questionArr);
 //// Property Name and Value
 const what = Object.entries(questionArr);
 // console.log(what);
+
+const entry = Object.values(questionArr);
 
 // destructure of object + nested objects
 const answers = Object.entries(questionArr);
@@ -106,25 +109,25 @@ for (const [key, { question, answers }] of what) {
 //   );
 // }
 
-function nextQuestion() {
-  for (const [
-    key,
-    {
-      question,
-      answers: { a, b, c, d },
-    },
-  ] of what) {
-    // console.log(typeof key);
+// function nextQuestion() {
+//   for (const [
+//     key,
+//     {
+//       question,
+//       answers: { a, b, c, d },
+//     },
+//   ] of what) {
+//     // console.log(typeof key);
 
-    console.log(
-      `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
-    A: ${[a]}\n
-    B: ${[b]}\n
-    C: ${[c]}\n
-    D: ${[d]}`
-    );
-  }
-}
+//     console.log(
+//       `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
+//     A: ${[a]}\n
+//     B: ${[b]}\n
+//     C: ${[c]}\n
+//     D: ${[d]}`
+//     );
+//   }
+// }
 
 // nextQuestion();
 
@@ -141,22 +144,39 @@ function nextQuestion() {
 
 // Start **BUG**
 beginButton.addEventListener('click', function () {
-  // button behavior
-  questionDisplay.textContent = Object.entries([questionArr]);
-  beginButton.style.display = 'none';
-  stopBtn.style.display = '';
-  inputAnswer.style.display = '';
+  // values
 
-  for (const [key, { question, answer }] of what) {
-    if (typeof key === 'number') {
-      console.log(`Answer ${key}: ${answer}`);
-    }
+  for (const [key, { question, ...answers }] of what) {
+    console.log(question);
+
+    // keys
+    const [i, ii] = Object.keys(questionArr);
+
+    // console.log(i);
+
+    // button behavior
+    questionDisplay.textContent = `Question ${
+      Number(i) + 1
+    }) \n ${question} \n`;
+
+    beginButton.style.display = 'none';
+
+    stopBtn.style.display = '';
+
+    answerBtn.style.display = '';
+
+    inputAnswer.textContent = ``;
   }
+  // // questions array
+  // for (const [key, { question, answer }] of what) {
+  //   if (typeof key === 'number') {
+  //     console.log(`Answer ${key}: ${answer}`);
+  //   }
+  // }
 
-  inputAnswer.addEventListener('click', function () {
-    let input = '';
+  answerBtn.addEventListener('click', function () {
     // displays question in console
-    const answer = String(prompt('Choose your answer:')).toLowerCase;
+    const answer = String(prompt('Choose your answer: ')).toLowerCase;
     console.log(answer);
 
     // compares answer
@@ -165,11 +185,11 @@ beginButton.addEventListener('click', function () {
     // for (const [key, { question, answers, correctAnswer }] of what) {
     //   console.log(correctAnswer);
 
-    //   if
-    //   // ? (answerCheck.textContent = 'Correct!') +
-    //   //   (questionDisplay.textContent = '')
-    //   // : (answerCheck.textContent = 'Try again!');
-    // }
+    answer === value
+      ? (answerCheck.textContent = 'Correct!') +
+        (questionDisplay.textContent = '')
+      : (answerCheck.textContent = 'Try again!');
+    // nextQuestion();
   });
 
   // const answer = Number(prompt('Your answer?'));
