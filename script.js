@@ -146,6 +146,9 @@ beginButton.addEventListener('click', function () {
   // key values
 
   const entry = questionArr.entries();
+  const score = [];
+
+  // console.log(arr);
 
   // question diplay
   for (const [
@@ -156,15 +159,14 @@ beginButton.addEventListener('click', function () {
     },
   ] of entry) {
     // console.log(key);
+    // console.log(question);
+
+    // answer display
+    inputAnswer.textContent = `a: ${a}, b: ${b}, c: ${c}, d: ${d}`;
+
     questionDisplay.textContent = `Question ${
       Number(key) + 1
     }. \n ${question} \n`;
-
-    console.log(answers);
-
-    (inputAnswer.textContent = `a: ${a}, b: ${b}, c: ${c}, d: ${d}`) +
-      ' ' +
-      `Click 'Answer' and type in your answer.`;
   }
 
   beginButton.style.display = 'none';
@@ -173,16 +175,12 @@ beginButton.addEventListener('click', function () {
 
   answerBtn.style.display = '';
 });
-// // questions array
-// for (const [key, { question, answer }] of what) {
-//   if (typeof key === 'number') {
-//     console.log(`Answer ${key}: ${answer}`);
 
 answerBtn.addEventListener('click', function () {
   const entry = questionArr.entries();
 
   // displays question in console
-  const answer = String(prompt('Type Answer: ')).toLowerCase;
+  const answer = String(prompt('Type Answer: '));
   console.log(answer);
 
   // compares answer
@@ -190,6 +188,8 @@ answerBtn.addEventListener('click', function () {
 
   // for (const [key, { question, answers, correctAnswer }] of what) {
   //   console.log(correctAnswer);
+
+  // console.log(correctAnswer);
 
   for (const [
     key,
@@ -199,9 +199,10 @@ answerBtn.addEventListener('click', function () {
       correctAnswer,
     },
   ] of entry)
-    answers === correctAnswer
+    answer === correctAnswer
       ? (answerCheck.textContent = 'Correct!') +
-        (questionDisplay.textContent = '')
+        (questionDisplay.textContent = '') +
+        (inputAnswer.textContent = '')
       : (answerCheck.textContent = 'Try again!');
   // nextQuestion();
 });
@@ -221,5 +222,7 @@ stopBtn.addEventListener('click', function () {
 
   init();
 });
+//   if (typeof key === 'number') {
+//     console.log(`Answer ${key}: ${answer}`);
 
 // input answer
