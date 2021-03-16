@@ -5,12 +5,14 @@ const answerCheck = document.querySelector('.answerCheck');
 const questionDisplay = document.querySelector('.quiz');
 const inputAnswer = document.querySelector('.answers');
 const answerBtn = document.getElementById('input');
+const nextBtn = document.getElementById('next');
 
 // init
 function init() {
   beginButton.style.display = '';
   stopBtn.style.display = 'none';
   answerBtn.style.display = 'none';
+  nextBtn.style.display = 'none';
   // console.log(stopBtn);
 }
 
@@ -164,9 +166,7 @@ beginButton.addEventListener('click', function () {
     // answer display
     inputAnswer.textContent = `a: ${a}, b: ${b}, c: ${c}, d: ${d}`;
 
-    questionDisplay.textContent = `Question ${
-      Number(key) + 1
-    }. \n ${question} \n`;
+    questionDisplay.textContent = `Question ${key + 1}. \n ${question} \n`;
   }
 
   beginButton.style.display = 'none';
@@ -198,12 +198,17 @@ answerBtn.addEventListener('click', function () {
       answers: { a, b, c, d },
       correctAnswer,
     },
-  ] of entry)
-    answer === correctAnswer
-      ? (answerCheck.textContent = 'Correct!') +
-        (questionDisplay.textContent = '') +
-        (inputAnswer.textContent = '')
-      : (answerCheck.textContent = 'Try again!');
+  ] of entry) {
+    if (answer === correctAnswer) {
+      answerCheck.textContent = 'Correct!';
+      console.log('Correct!');
+      questionDisplay.textContent = '';
+      inputAnswer.textContent = '';
+      nextBtn.style.display = '';
+    } else {
+      answerCheck.textContent = 'Try Again!';
+    }
+  }
   // nextQuestion();
 });
 
@@ -224,5 +229,3 @@ stopBtn.addEventListener('click', function () {
 });
 //   if (typeof key === 'number') {
 //     console.log(`Answer ${key}: ${answer}`);
-
-// input answer
