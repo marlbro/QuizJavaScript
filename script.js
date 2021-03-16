@@ -10,7 +10,7 @@ function init() {
   beginButton.style.display = '';
   stopBtn.style.display = 'none';
   inputAnswer.style.display = 'none';
-  console.log(stopBtn);
+  // console.log(stopBtn);
 }
 
 init();
@@ -75,10 +75,10 @@ console.log(questionArr);
 const what = Object.entries(questionArr);
 // console.log(what);
 
+// destructure of object + nested objects
 const answers = Object.entries(questionArr);
-
 for (const [key, { question, answers }] of what) {
-  console.log();
+  // console.log(answers);
 }
 
 // console.log(
@@ -87,8 +87,6 @@ for (const [key, { question, answers }] of what) {
 // B: ${[b]}\n
 // C: ${[c]}\n
 // D: ${[d]}`
-
-console.log(answers);
 
 // for (const [
 //   key,
@@ -144,42 +142,49 @@ function nextQuestion() {
 // Start **BUG**
 beginButton.addEventListener('click', function () {
   // button behavior
-  questionDisplay.textContent = beginButton.style.display = 'none';
+  questionDisplay.textContent = Object.entries([questionArr]);
+  beginButton.style.display = 'none';
   stopBtn.style.display = '';
   inputAnswer.style.display = '';
 
-  for (const [key, value] of what) {
+  for (const [key, { question, answer }] of what) {
     if (typeof key === 'number') {
-      console.log(`Answer ${key}: ${value}`);
+      console.log(`Answer ${key}: ${answer}`);
     }
   }
+
+  inputAnswer.addEventListener('click', function () {
+    let input = '';
+    // displays question in console
+    const answer = String(prompt('Choose your answer:')).toLowerCase;
+    console.log(answer);
+
+    // compares answer
+    // console.log(question.get(question.get('correct') === answer));
+
+    // for (const [key, { question, answers, correctAnswer }] of what) {
+    //   console.log(correctAnswer);
+
+    //   if
+    //   // ? (answerCheck.textContent = 'Correct!') +
+    //   //   (questionDisplay.textContent = '')
+    //   // : (answerCheck.textContent = 'Try again!');
+    // }
+  });
+
+  // const answer = Number(prompt('Your answer?'));
+  // console.log(answer);
+
+  // console.log(question.get(question.get('correct') === answer));
 });
 
 // stop
 stopBtn.addEventListener('click', function () {
   questionDisplay.style.display = '';
-  questionDisplay.textContent = 'Start Quiz';
+  questionDisplay.textContent = '';
   answerCheck.textContent = '';
 
   init();
 });
 
 // input answer
-inputAnswer.addEventListener('click', function () {
-  // displays question in console
-  const answer = Number(prompt('Choose your answer:'));
-  console.log(answer);
-
-  // compares answer
-  console.log(question.get(question.get('correct') === answer));
-
-  answer === 3
-    ? (answerCheck.textContent = 'Correct!') +
-      (questionDisplay.textContent = '')
-    : (answerCheck.textContent = 'Try again!');
-});
-
-// const answer = Number(prompt('Your answer?'));
-// console.log(answer);
-
-// console.log(question.get(question.get('correct') === answer));
