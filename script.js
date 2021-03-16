@@ -146,18 +146,13 @@ for (const [key, { question, answers }] of what) {
 beginButton.addEventListener('click', function () {
   // values
 
-  for (const [key, { question, ...answers }] of what) {
+  for (const [key, { question, answers }] of what) {
     console.log(question);
-
-    // keys
-    const [i, ii] = Object.keys(questionArr);
-
-    // console.log(i);
 
     // button behavior
     questionDisplay.textContent = `Question ${
-      Number(i) + 1
-    }) \n ${question} \n`;
+      Number(key) + 1
+    }. \n ${question} \n`;
 
     beginButton.style.display = 'none';
 
@@ -165,7 +160,7 @@ beginButton.addEventListener('click', function () {
 
     answerBtn.style.display = '';
 
-    inputAnswer.textContent = ``;
+    inputAnswer.textContent = '';
   }
   // // questions array
   // for (const [key, { question, answer }] of what) {
