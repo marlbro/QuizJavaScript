@@ -144,11 +144,17 @@ for (const [key, { question, answers }] of what) {
 // Start **BUG**
 beginButton.addEventListener('click', function () {
   // key values
-  const entry = Object.entries(questionArr);
-  const arr = Object.values(answers);
+
+  const entry = questionArr.entries();
 
   // question diplay
-  for (const [key, { question, answers: a, b, c, d }] of entry) {
+  for (const [
+    key,
+    {
+      question,
+      answers: { a, b, c, d },
+    },
+  ] of entry) {
     // console.log(key);
     questionDisplay.textContent = `Question ${
       Number(key) + 1
@@ -156,8 +162,9 @@ beginButton.addEventListener('click', function () {
 
     console.log(answers);
 
-    inputAnswer.textContent = `Click 'Answer' and type in your answer.
-    `;
+    (inputAnswer.textContent = `a: ${a}, b: ${b}, c: ${c}, d: ${d}`) +
+      ' ' +
+      `Click 'Answer' and type in your answer.`;
   }
 
   beginButton.style.display = 'none';
@@ -172,6 +179,8 @@ beginButton.addEventListener('click', function () {
 //     console.log(`Answer ${key}: ${answer}`);
 
 answerBtn.addEventListener('click', function () {
+  const entry = questionArr.entries();
+
   // displays question in console
   const answer = String(prompt('Type Answer: ')).toLowerCase;
   console.log(answer);
@@ -182,10 +191,18 @@ answerBtn.addEventListener('click', function () {
   // for (const [key, { question, answers, correctAnswer }] of what) {
   //   console.log(correctAnswer);
 
-  answer === correctAnswer
-    ? (answerCheck.textContent = 'Correct!') +
-      (questionDisplay.textContent = '')
-    : (answerCheck.textContent = 'Try again!');
+  for (const [
+    key,
+    {
+      question,
+      answers: { a, b, c, d },
+      correctAnswer,
+    },
+  ] of entry)
+    answers === correctAnswer
+      ? (answerCheck.textContent = 'Correct!') +
+        (questionDisplay.textContent = '')
+      : (answerCheck.textContent = 'Try again!');
   // nextQuestion();
 });
 
