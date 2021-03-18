@@ -46,6 +46,13 @@ body {
   padding-left: 40%;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 200;
+  font-size: 12px;
+}
+
+.answerCheck {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 10px;
+  padding-left: 3%;
 }
 
 .quiz {
