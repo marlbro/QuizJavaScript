@@ -71,62 +71,13 @@ const questionArr = [
 
 // console.log(questionArr);
 
-// console.log(questionArr[0].answers);  displays answers
+console.log(questionArr); //  displays answers
 // console.log(questionArr[0].correctAnswer); //  displays answers
 
 const questions = questionArr.entries();
 
 // destructure of object + nested objects
 const answers = Object.entries(questionArr);
-
-// for (const [key, { question, answers }] of questionArr) {
-//   console.log(answers);
-// }
-
-// console.log(
-//   `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
-// A: ${[a]}\n
-// B: ${[b]}\n
-// C: ${[c]}\n
-// D: ${[d]}`
-
-// for (const [
-//   key,
-//   {
-//     question,
-//     answers: { a, b, c, d },
-//   },
-// ] of what) {
-//   // console.log(typeof key);
-
-//   console.log(
-//     `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
-//     A: ${[a]}\n
-//     B: ${[b]}\n
-//     C: ${[c]}\n
-//     D: ${[d]}`
-//   );
-// }
-
-// function nextQuestion() {
-//   for (const [
-//     key,
-//     {
-//       question,
-//       answers: { a, b, c, d },
-//     },
-//   ] of questionArr) {
-//     // console.log(typeof key);
-
-//     console.log(
-//       `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
-//     A: ${[a]}\n
-//     B: ${[b]}\n
-//     C: ${[c]}\n
-//     D: ${[d]}`
-//     );
-//   }
-// }
 
 // nextQuestion();
 
@@ -175,9 +126,10 @@ beginButton.addEventListener('click', function () {
 
 answerBtn.addEventListener('click', function () {
   const entry = questionArr.entries();
+  const num = '';
 
   // displays question in console
-  const answer = String(prompt('Type Answer: '));
+  const answer = String(prompt('Type Answer: ').toLowerCase());
   console.log(answer);
 
   // compares answer
@@ -197,10 +149,13 @@ answerBtn.addEventListener('click', function () {
     },
   ] of entry) {
     if (answer === correctAnswer) {
-      answerCheck.textContent = 'Correct!';
       console.log('Correct!');
+      answerCheck.textContent = 'Correct!';
       questionDisplay.textContent = '';
-      inputAnswer.textContent = '';
+
+      for (let i = 0; i < questionArr.length; i++)
+        inputAnswer.textContent = `Correct Answer: ${correctAnswer.toUpperCase()}`;
+
       answerBtn.style.display = 'none';
       nextBtn.style.display = '';
     } else if (answer != String) {
