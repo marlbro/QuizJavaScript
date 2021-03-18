@@ -115,7 +115,7 @@ const answers = Object.entries(questionArr);
 //       question,
 //       answers: { a, b, c, d },
 //     },
-//   ] of what) {
+//   ] of questionArr) {
 //     // console.log(typeof key);
 
 //     console.log(
@@ -162,8 +162,8 @@ beginButton.addEventListener('click', function () {
     // console.log(question);
 
     // answer display
-    questionDisplay.textContent = `Question ${key + 1}. \n ${question} \n`;
-    inputAnswer.textContent = `a: ${a}, b: ${b}, c: ${c}, d: ${d}`;
+    questionDisplay.textContent = `Question ${key + 1}. ${question} `;
+    inputAnswer.textContent = `A: (${a})\n B: (${b})\n C: (${c})\n D: (${d})\n`;
   }
 
   beginButton.style.display = 'none';
@@ -201,6 +201,7 @@ answerBtn.addEventListener('click', function () {
       console.log('Correct!');
       questionDisplay.textContent = '';
       inputAnswer.textContent = '';
+      answerBtn.style.display = 'none';
       nextBtn.style.display = '';
     } else if (answer != String) {
       answerCheck.textContent = 'Choose a letter.';
