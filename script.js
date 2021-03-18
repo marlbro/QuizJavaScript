@@ -69,21 +69,19 @@ const questionArr = [
   },
 ];
 
-console.log(questionArr);
+// console.log(questionArr);
 
 // console.log(questionArr[0].answers);  displays answers
 // console.log(questionArr[0].correctAnswer); //  displays answers
 
-//// Property Name and Value
-const what = Object.entries(questionArr);
-// console.log(what);
+const questions = questionArr.entries();
 
 // destructure of object + nested objects
 const answers = Object.entries(questionArr);
 
-for (const [key, { question, answers }] of what) {
-  // console.log(answers);
-}
+// for (const [key, { question, answers }] of questionArr) {
+//   console.log(answers);
+// }
 
 // console.log(
 //   `${Number(key) + 1})\n \n ${question}\n \n Choose an answer: \n
@@ -146,11 +144,11 @@ for (const [key, { question, answers }] of what) {
 // Start **BUG**
 beginButton.addEventListener('click', function () {
   // key values
-
-  const entry = questionArr.entries();
-  const score = [];
+  const keys = questionArr.keys();
+  const arr = questionArr.entries();
 
   // console.log(arr);
+  // console.log(keys);
 
   // question diplay
   for (const [
@@ -159,14 +157,13 @@ beginButton.addEventListener('click', function () {
       question,
       answers: { a, b, c, d },
     },
-  ] of entry) {
+  ] of arr) {
     // console.log(key);
     // console.log(question);
 
     // answer display
-    inputAnswer.textContent = `a: ${a}, b: ${b}, c: ${c}, d: ${d}`;
-
     questionDisplay.textContent = `Question ${key + 1}. \n ${question} \n`;
+    inputAnswer.textContent = `a: ${a}, b: ${b}, c: ${c}, d: ${d}`;
   }
 
   beginButton.style.display = 'none';
@@ -205,6 +202,8 @@ answerBtn.addEventListener('click', function () {
       questionDisplay.textContent = '';
       inputAnswer.textContent = '';
       nextBtn.style.display = '';
+    } else if (answer != String) {
+      answerCheck.textContent = 'Choose a letter.';
     } else {
       answerCheck.textContent = 'Try Again!';
     }
