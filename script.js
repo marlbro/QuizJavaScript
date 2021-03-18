@@ -18,20 +18,16 @@ function init() {
 
 init();
 
-//// questions using a Map
-// const question = new Map([
-//   ['question', 'Which of the following is NOT a Falsey Value?'],
-//   [1, '0'],
-//   [2, 'Null'],
-//   [3, '5'],
-//   [4, ''],
-//   ['correct', 3],
-//   [true, 'Correct!'],
-//   [false, 'Try again!'],
+// user inputs
 
-//   ['question2', 'What below is an in-line style code, in HTML?'],
-//   ['question3', 'What is a great way to learn Code?'],
-// ]);
+// const quizScore = [];
+
+// function addScore() {
+//   for (let i = 0; i < quizScore.push(i); i++) {
+//     i = i += quizScore[i];
+//     console.log(`${i} of questions.`);
+//   }
+// }
 
 /// Questions Array
 const questionArr = [
@@ -71,13 +67,17 @@ const questionArr = [
 
 // console.log(questionArr);
 
-console.log(questionArr); //  displays answers
+console.log(questionArr); //  arrays
+
+const test = new Set(questionArr);
+console.log(test);
+
 // console.log(questionArr[0].correctAnswer); //  displays answers
 
 const questions = questionArr.entries();
 
 // destructure of object + nested objects
-const answers = Object.entries(questionArr);
+// const answers = Object.entries(questionArr);
 
 // nextQuestion();
 
@@ -94,6 +94,8 @@ const answers = Object.entries(questionArr);
 
 // Start **BUG**
 beginButton.addEventListener('click', function () {
+  // loop
+
   // key values
   const keys = questionArr.keys();
   const arr = questionArr.entries();
@@ -101,15 +103,21 @@ beginButton.addEventListener('click', function () {
   // console.log(arr);
   // console.log(keys);
 
+  // // loops through question array
+  // for (let i = 0; i < questionArr.length; i++) {
+  //   console.log(questionArr[i].correctAnswer);
+  // }
+
   // question diplay
   for (const [
     key,
     {
       question,
       answers: { a, b, c, d },
+      correctAnswer,
     },
   ] of arr) {
-    // console.log(key);
+    console.log(key);
     // console.log(question);
 
     // answer display
@@ -125,7 +133,7 @@ beginButton.addEventListener('click', function () {
 });
 
 answerBtn.addEventListener('click', function () {
-  const entry = questionArr.entries();
+  const entries = questionArr.entries();
   const num = '';
 
   // displays question in console
@@ -140,25 +148,25 @@ answerBtn.addEventListener('click', function () {
 
   // console.log(correctAnswer);
 
-  for (const [
-    key,
-    {
-      question,
-      answers: { a, b, c, d },
-      correctAnswer,
-    },
-  ] of entry) {
+  for (const [key, { question, answers, correctAnswer }] of entries) {
     if (answer === correctAnswer) {
-      console.log('Correct!');
-      answerCheck.textContent = 'Correct!';
-      questionDisplay.textContent = '';
+      inputAnswer.textContent = `Correct Answer = ${correctAnswer.toUpperCase()}: ${
+        questionArr[key].answers[answer]
+      }`;
 
-      for (let i = 0; i < questionArr.length; i++)
-        inputAnswer.textContent = `Correct Answer: ${correctAnswer.toUpperCase()}`;
+      console.log(correctAnswer);
 
+      // hides buttons
       answerBtn.style.display = 'none';
       nextBtn.style.display = '';
-    } else if (answer != String) {
+
+      // hides element by removing text
+      questionDisplay.textContent = '';
+
+      // logs
+      console.log('Correct!');
+      answerCheck.textContent = 'Correct!';
+    } else if (answer != answer) {
       answerCheck.textContent = 'Choose a letter.';
     } else {
       answerCheck.textContent = 'Try Again!';
@@ -179,6 +187,7 @@ stopBtn.addEventListener('click', function () {
   questionDisplay.textContent = '';
   answerCheck.textContent = '';
   inputAnswer.textContent = '';
+  console.log('Quiz clear');
 
   init();
 });
