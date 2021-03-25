@@ -57,11 +57,11 @@ const questionArr = [
     question: 'In Computer Science, REST stands for what ancronym?',
     answers: {
       a: 'Read Every Single Thing',
-      c: 'Readable Entry Syntax Technology',
-      b: 'Representational State Transfer',
-      d: 'Ready-Entry State Terminals',
+      b: 'Readable Entry Syntax Technology',
+      d: 'Representational State Transfer',
+      c: 'Ready-Entry State Terminals',
     },
-    correctAnswer: 'b',
+    correctAnswer: 'd',
   },
 ];
 
@@ -74,7 +74,7 @@ console.log(test);
 
 // console.log(questionArr[0].correctAnswer); //  displays answers
 
-const questions = questionArr.entries();
+const questions = questionArr.entries(answers);
 
 // destructure of object + nested objects
 // const answers = Object.entries(questionArr);
@@ -154,21 +154,20 @@ answerBtn.addEventListener('click', function () {
         questionArr[key].answers[answer]
       }`;
 
-      console.log(correctAnswer);
-
       // hides buttons
       answerBtn.style.display = 'none';
-      nextBtn.style.display = '';
 
       // hides element by removing text
       questionDisplay.textContent = '';
 
-      // logs
-      console.log('Correct!');
+      console.log(correctAnswer);
       answerCheck.textContent = 'Correct!';
+
+      nextBtn.style.display = '';
     } else if (answer != answer) {
       answerCheck.textContent = 'Choose a letter.';
     } else {
+      inputAnswer.textContent = '';
       answerCheck.textContent = 'Try Again!';
     }
   }
