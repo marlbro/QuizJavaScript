@@ -33,35 +33,29 @@ init();
 const questionArr = [
   {
     question: 'Who invented JavaScript?',
-    answers: {
-      a: 'Douglas Crockford',
-      b: 'Sheryl Sandberg',
-      c: 'Brendan Eich',
-      d: 'Bill Gates',
-    },
+    answers: [
+      'a: Douglas Crockford',
+      'b: Sheryl Sandberg',
+      'c: Brendan Eich',
+      'd: Bill Gates',
+    ],
     correctAnswer: 'c',
   },
 
   {
     question: 'Which of the following is NOT a falsey value?',
-    answers: {
-      a: '0',
-      b: 'true',
-      c: 'Null',
-      d: 'undefined',
-    },
+    answers: ['a: 0', 'b: true', 'c: Null', 'd: undefined'],
     correctAnswer: 'b',
   },
-
   {
     question: 'In Computer Science, REST stands for what ancronym?',
-    answers: {
-      a: 'Read Every Single Thing',
-      b: 'Readable Entry Syntax Technology',
-      d: 'Representational State Transfer',
-      c: 'Ready-Entry State Terminals',
-    },
-    correctAnswer: 'd',
+    answers: [
+      'a: Read Every Single Thing',
+      'b: Readable Entry Syntax Technology',
+      'c: Representational State Transfer',
+      'd: Ready-Entry State Terminals',
+    ],
+    correctAnswer: 'c',
   },
 ];
 
@@ -73,8 +67,6 @@ const test = new Set(questionArr);
 console.log(test);
 
 // console.log(questionArr[0].correctAnswer); //  displays answers
-
-const questions = questionArr.entries(answers);
 
 // destructure of object + nested objects
 // const answers = Object.entries(questionArr);
@@ -94,79 +86,55 @@ const questions = questionArr.entries(answers);
 
 // Start **BUG**
 beginButton.addEventListener('click', function () {
-  // loop
+  // loops through question array
+  for (let i = 0; i < questionArr.length; i++) {
+    // displays question
+    console.log(questionArr[i].question);
 
-  // key values
-  const keys = questionArr.keys();
-  const arr = questionArr.entries();
+    // displays answer
+    console.log(questionArr[i].answers);
 
-  // console.log(arr);
-  // console.log(keys);
+    // correct answers
+    console.log(questionArr[i].correctAnswer);
 
-  // // loops through question array
-  // for (let i = 0; i < questionArr.length; i++) {
-  //   console.log(questionArr[i].correctAnswer);
-  // }
+    questionDisplay.textContent = `Question ${i + 1}) ${
+      questionArr[i].question
+    }`;
 
-  // question diplay
-  for (const [
-    key,
-    {
-      question,
-      answers: { a, b, c, d },
-      correctAnswer,
-    },
-  ] of arr) {
-    console.log(key);
-    // console.log(question);
-
-    // answer display
-    questionDisplay.textContent = `Question ${key + 1}. ${question} `;
-    inputAnswer.textContent = `A: (${a})\n B: (${b})\n C: (${c})\n D: (${d})\n`;
+    inputAnswer.textContent = `\n ${questionArr[i].answers}`;
+    beginButton.style.display = 'none';
   }
 
-  beginButton.style.display = 'none';
+  // question display
+
+  // console.log(question);
+
+  // answer display
 
   stopBtn.style.display = '';
-
   answerBtn.style.display = '';
 });
 
 answerBtn.addEventListener('click', function () {
-  const entries = questionArr.entries();
   const num = '';
 
   // displays question in console
   const answer = String(prompt('Type Answer: ').toLowerCase());
   console.log(answer);
 
-  // compares answer
-  // console.log(question.get(question.get('correct') === answer));
-
-  // for (const [key, { question, answers, correctAnswer }] of what) {
-  //   console.log(correctAnswer);
-
-  // console.log(correctAnswer);
-
-  for (const [key, { question, answers, correctAnswer }] of entries) {
+  for (const { key, question, answers, correctAnswer } of questionArr) {
     if (answer === correctAnswer) {
-      inputAnswer.textContent = `Correct Answer = ${correctAnswer.toUpperCase()}: ${
-        questionArr[key].answers[answer]
-      }`;
-
       // hides buttons
       answerBtn.style.display = 'none';
+      nextBtn.style.display = '';
 
       // hides element by removing text
       questionDisplay.textContent = '';
-
-      console.log(correctAnswer);
-      answerCheck.textContent = 'Correct!';
-
-      nextBtn.style.display = '';
+      answerCheck.textContent = `Correct! Answer: ${correctAnswer}`;
     } else if (answer != answer) {
       answerCheck.textContent = 'Choose a letter.';
     } else {
+      // hides text content if no input
       inputAnswer.textContent = '';
       answerCheck.textContent = 'Try Again!';
     }
